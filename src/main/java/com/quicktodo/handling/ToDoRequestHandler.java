@@ -20,8 +20,10 @@ public class ToDoRequestHandler {
     private final UserRepository userRepository;
     private final ToDoRequestValidator inputDataValidator;
 
-    public List<ToDo> getAllTodosForUser(final long userId) {
-        return toDoRepository.findByOwnerUserId(userId);
+    public List<ToDo> getActiveTodosForUser(final long userId) {
+        return toDoRepository.findByOwnerUserId(userId).stream()
+                .filter(todo -> !todo.getDone())
+                .toList();
     }
 
     public ToDo addToDo(final long userId, final ToDoRequest request) {

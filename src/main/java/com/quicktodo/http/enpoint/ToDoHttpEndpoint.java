@@ -25,8 +25,8 @@ public class ToDoHttpEndpoint {
     private final ToDoRequestHandler toDoRequestHandler;
 
     @GetMapping("/{userId}/todos")
-    public List<ToDo> getAllTodosForUser(@PathVariable(name = "userId") final long userId) {
-        return toDoRequestHandler.getAllTodosForUser(userId);
+    public List<ToDo> getActiveTodosForUser(@PathVariable(name = "userId") final long userId) {
+        return toDoRequestHandler.getActiveTodosForUser(userId);
     }
 
     @PostMapping("/{userId}/todos")
